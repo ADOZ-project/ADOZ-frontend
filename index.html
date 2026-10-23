@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오프닝</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE@2/fonts/static/woff2/SUITE.css"
+    />
+    <style>
+      p {
+        color: #458cff;
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+        font-family: "SUITE", sans-serif;
+      }
+      #all {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column; /* 문구 → 캐릭터 세로로 */
+        justify-content: center; /* 세로 가운데 */
+        align-items: center; /* 가로 가운데 */
+      }
+      #A-ti {
+        width: 136.01px;
+        height: 138.25px;
+      }
+      #Do-do {
+        width: 129.98px;
+        height: 138.25px;
+      }
+      #O-ri {
+        width: 131.83px;
+        height: 138.25px;
+      }
+      #Z-ni {
+        width: 128.51px;
+        height: 138.25px;
+      }
+      #charc {
+        display: flex;
+        gap: 60px;
+      }
+    </style>
+  </head>
+  <script>
+    const chars = ["A-ti", "Do-do", "O-ri", "Z-ni"];
+
+    // 눈 감은 이미지 미리 불러오기 (처음 깜빡일 때 끊기는 것 방지)
+    chars.forEach((name) => {
+      new Image().src = `./assets/mascot/${name}_close.png`;
+    });
+
+    // 한 캐릭터 깜빡이기: 감았다가 0.15초 뒤에 다시 뜨기
+    function blink(name) {
+      const img = document.getElementById(name);
+      img.src = `./assets/mascot/${name}_close.png`;
+      setTimeout(() => {
+        img.src = `./assets/mascot/${name}_open.png`;
+      }, 150);
+    }
+
+    // 0.5초 간격으로 한 명씩 순서대로
+    chars.forEach((name, i) => {
+      setTimeout(() => blink(name), 500 + i * 500);
+    });
+
+    // 3초 후 메인으로 이동
+    setTimeout(() => {
+      location.replace("./pages/main.html");
+    }, 3000);
+  </script>
+  <body>
+    <div id="all">
+      <p>A부터 Z까지 무임승차 없는 클린한 팀플의 시작</p>
+      <div id="charc">
+        <img
+          src="./assets/mascot/A-ti_open.png"
+          alt="아띠 눈 뜨고 있는 사진"
+          id="A-ti"
+        />
+        <img
+          src="./assets/mascot/Do-do_open.png"
+          alt="두두 눈 뜨고 있는 사진"
+          id="Do-do"
+        />
+        <img
+          src="./assets/mascot/O-ri_open.png"
+          alt="오리 눈 뜨고 있는 사진"
+          id="O-ri"
+        />
+        <img
+          src="./assets/mascot/Z-ni_open.png"
+          alt="지니 눈 뜨고 있는 사진"
+          id="Z-ni"
+        />
+      </div>
+    </div>
+  </body>
+</html>
